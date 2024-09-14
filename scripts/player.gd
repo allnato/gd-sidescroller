@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var player_animation: AnimatedSprite2D = %PlayerAnimation
 
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = clampf(velocity.y, -1000, 1000)
 
 	if Input.is_action_just_pressed("move_jump") and self.is_on_floor():
-		velocity.y += -player_jump_force
+		jump(player_jump_force)
 
 	player_direction = Input.get_axis("move_left", "move_right")
 
@@ -29,6 +30,9 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = player_speed * player_direction
 	move_and_slide()
+
+func jump(force: float):
+	velocity.y = -(force)
 
 func update_animation(direction: float):
 	if is_on_floor():

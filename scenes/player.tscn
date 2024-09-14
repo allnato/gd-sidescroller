@@ -197,11 +197,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhpjc"]
-size = Vector2(24, 25)
+size = Vector2(14, 25)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 script = ExtResource("1_gkpjm")
 player_speed = 150.0
 player_jump_force = 250.0

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddvd1ymbafskn"]
+[gd_scene load_steps=7 format=3 uid="uid://ddvd1ymbafskn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_rpxka"]
 [ext_resource type="PackedScene" uid="uid://cuw8qh3x14rtb" path="res://scenes/player.tscn" id="2_w625h"]
 [ext_resource type="Texture2D" uid="uid://dfq7kuy2tahpa" path="res://icon.svg" id="3_jk53j"]
+[ext_resource type="PackedScene" uid="uid://dkqgvyd7fbm01" path="res://scenes/jump_pad.tscn" id="4_24e86"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf2ch"]
 size = Vector2(416, 18)
@@ -40,3 +41,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
 position = Vector2(237, 530)
 shape = SubResource("WorldBoundaryShape2D_1a0tl")
+
+[node name="JumpPad" parent="." instance=ExtResource("4_24e86")]
+position = Vector2(86, 178)
