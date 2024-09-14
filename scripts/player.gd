@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var player_speed: float = 200.0
 @export var player_jump_force: float = 200.0
 
-var player_direction: int = 0
+var player_direction: float = 0
 
 func _ready() -> void:
 	pass
@@ -23,11 +23,20 @@ func _physics_process(delta: float) -> void:
 	player_direction = Input.get_axis("move_left", "move_right")
 
 	if player_direction != 0.0:
-		player_animation.flip_h = 1.0 - player_direction
-		player_animation.play("run")
-	else:
-		player_animation.play("idle")
+		player_animation.flip_h = (player_direction < 0.0)
+	update_animation(player_direction)
+
 	velocity.x = player_speed * player_direction
-
-
 	move_and_slide()
+
+func update_animation(direction: float):
+	if is_on_floor():
+		if direction != 0.0:
+			player_animation.play("run")
+		else:
+			player_animation.play("idle")
+	else:
+		if velocity.y < 0.0:
+			player_animation.play("jump")
+		else:
+			player_animation.play("fall")
