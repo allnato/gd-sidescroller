@@ -13,6 +13,7 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	# Apply Gravity
 	if not self.is_on_floor():
 		velocity.y += player_gravity * delta
 		velocity.y = clampf(velocity.y, -1000, 1000)

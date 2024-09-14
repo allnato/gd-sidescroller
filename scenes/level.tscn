@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddvd1ymbafskn"]
+[gd_scene load_steps=6 format=3 uid="uid://ddvd1ymbafskn"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_rpxka"]
 [ext_resource type="PackedScene" uid="uid://cuw8qh3x14rtb" path="res://scenes/player.tscn" id="2_w625h"]
@@ -7,8 +7,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf2ch"]
 size = Vector2(416, 18)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1a0tl"]
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_rpxka")
+metadata/_edit_horizontal_guides_ = [210.0]
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(237, 131)
+gizmo_extents = 20.0
 
 [node name="Player" parent="." instance=ExtResource("2_w625h")]
 position = Vector2(200, 105)
@@ -24,3 +31,9 @@ texture = ExtResource("3_jk53j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("RectangleShape2D_bf2ch")
+
+[node name="Deathzone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Deathzone"]
+position = Vector2(237, 530)
+shape = SubResource("WorldBoundaryShape2D_1a0tl")
