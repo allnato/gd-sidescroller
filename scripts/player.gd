@@ -16,19 +16,18 @@ func _physics_process(delta: float) -> void:
 	if not self.is_on_floor():
 		velocity.y += player_gravity * delta
 		velocity.y = clampf(velocity.y, -1000, 1000)
-		print("Velocity:%.2f" % velocity.y)
-	
-	if Input.is_action_just_pressed("move_jump"):
+
+	if Input.is_action_just_pressed("move_jump") and self.is_on_floor():
 		velocity.y += -player_jump_force
-	
+
 	player_direction = Input.get_axis("move_left", "move_right")
-	
+
 	if player_direction != 0.0:
 		player_animation.flip_h = 1.0 - player_direction
 		player_animation.play("run")
 	else:
 		player_animation.play("idle")
 	velocity.x = player_speed * player_direction
-	
-	
+
+
 	move_and_slide()
